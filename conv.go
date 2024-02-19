@@ -21,7 +21,7 @@ func stringToTokens(s string) []string {
 	return tokens
 }
 
-func ConvRPN(s string) *Queue[string] {
+func ConvRPN(s string) string {
 	tokens := stringToTokens(s)
 	stack := NewStack[string]()
 	que := NewQueue[string]()
@@ -51,5 +51,12 @@ func ConvRPN(s string) *Queue[string] {
 		stack.Pop()
 	}
 
-	return que
+	rpn := ""
+	for !que.IsEmpty() {
+		rpn += que.Front()
+		rpn += " "
+		que.Pop()
+	}
+	rpn = strings.Trim(rpn, " ")
+	return rpn
 }
