@@ -13,7 +13,7 @@ var precedence = map[string]int{
 func stringToTokens(s string) []string {
 	tokens := make([]string, 0)
 	for _, r := range strings.Split(s, " ") {
-		if r == " " {
+		if r == " " || r == "" {
 			continue
 		}
 		tokens = append(tokens, string(r))
@@ -57,6 +57,6 @@ func ConvRPN(s string) string {
 		rpn += " "
 		que.Pop()
 	}
-	rpn = strings.Trim(rpn, " ")
+	rpn = strings.TrimSpace(rpn)
 	return rpn
 }

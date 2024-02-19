@@ -37,6 +37,9 @@ func Calc(rpn string) int {
 	stack := NewStack[int]()
 	tokens := strings.Split(rpn, " ")
 	for _, token := range tokens {
+		if token == "" {
+			continue
+		}
 		switch token {
 		case "+":
 			{
