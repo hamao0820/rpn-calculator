@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestAdd(t *testing.T) {
 	if add(1, 2) != 3 {
@@ -69,6 +71,66 @@ func TestPow(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := pow(tt.args.x, tt.args.n); got != tt.want {
 				t.Errorf("pow() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestComb(t *testing.T) {
+	type args struct {
+		a int
+		b int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "4C2",
+			args: args{a: 4, b: 2},
+			want: 6,
+		},
+		{
+			name: "4C3",
+			args: args{a: 4, b: 3},
+			want: 4,
+		},
+		{
+			name: "4C0",
+			args: args{a: 4, b: 0},
+			want: 1,
+		},
+		{
+			name: "4C4",
+			args: args{a: 4, b: 4},
+			want: 1,
+		},
+		{
+			name: "10C5",
+			args: args{a: 10, b: 5},
+			want: 252,
+		},
+		{
+			name: "10C0",
+			args: args{a: 10, b: 0},
+			want: 1,
+		},
+		{
+			name: "10C10",
+			args: args{a: 10, b: 10},
+			want: 1,
+		},
+		{
+			name: "30C15",
+			args: args{a: 30, b: 15},
+			want: 155117520,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := comb(tt.args.a, tt.args.b); got != tt.want {
+				t.Errorf("Comb() = %v, want %v", got, tt.want)
 			}
 		})
 	}

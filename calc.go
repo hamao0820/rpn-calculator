@@ -33,6 +33,17 @@ func pow(x, n int) int {
 	return res
 }
 
+func comb(a, b int) int {
+	C := make([]int, b+1)
+	C[0] = 1
+	for i := 1; i <= a; i++ {
+		for j := min(i, b); j > 0; j-- {
+			C[j] = C[j] + C[j-1]
+		}
+	}
+	return C[b]
+}
+
 func Calc(rpn string) int {
 	stack := NewStack[int]()
 	tokens := strings.Split(rpn, " ")
