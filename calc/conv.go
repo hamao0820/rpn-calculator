@@ -1,6 +1,9 @@
-package main
+package calc
 
-import "strings"
+import (
+	"rpn-calculator/ds"
+	"strings"
+)
 
 var precedence = map[string]int{
 	"+": 1,
@@ -26,8 +29,8 @@ func stringToTokens(s string) []string {
 
 func ConvRPN(s string) string {
 	tokens := stringToTokens(s)
-	stack := NewStack[string]()
-	que := NewQueue[string]()
+	stack := ds.NewStack[string]()
+	que := ds.NewQueue[string]()
 
 	for _, token := range tokens {
 		if token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == "C" || token == "P" || token == "!" {

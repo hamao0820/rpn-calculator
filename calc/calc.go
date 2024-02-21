@@ -1,6 +1,7 @@
-package main
+package calc
 
 import (
+	"rpn-calculator/ds"
 	"strconv"
 	"strings"
 )
@@ -57,7 +58,7 @@ func fact(n int) int {
 }
 
 func Calc(rpn string) int {
-	stack := NewStack[int]()
+	stack := ds.NewStack[int]()
 	tokens := strings.Split(rpn, " ")
 	for _, token := range tokens {
 		if token == "" {

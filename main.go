@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"rpn-calculator/calc"
 )
 
 func main() {
@@ -15,9 +16,9 @@ func main() {
 		// remove newline character
 		input = input[:len(input)-1]
 		fmt.Println("You entered: ", input)
-		rpn := ConvRPN(input)
+		rpn := calc.ConvRPN(input)
 		fmt.Println("RPN: ", rpn)
-		result := Calc(rpn)
+		result := calc.Calc(rpn)
 		fmt.Println("Result: ", result)
 		fmt.Println()
 	}
