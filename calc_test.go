@@ -196,6 +196,46 @@ func TestPerm(t *testing.T) {
 	}
 }
 
+func TestFact(t *testing.T) {
+	type args struct {
+		n int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{"0!", args{0}, 1},
+		{"1!", args{1}, 1},
+		{"2!", args{2}, 2},
+		{"3!", args{3}, 6},
+		{"4!", args{4}, 24},
+		{"5!", args{5}, 120},
+		{"6!", args{6}, 720},
+		{"7!", args{7}, 5040},
+		{"8!", args{8}, 40320},
+		{"9!", args{9}, 362880},
+		{"10!", args{10}, 3628800},
+		{"11!", args{11}, 39916800},
+		{"12!", args{12}, 479001600},
+		{"13!", args{13}, 6227020800},
+		{"14!", args{14}, 87178291200},
+		{"15!", args{15}, 1307674368000},
+		{"16!", args{16}, 20922789888000},
+		{"17!", args{17}, 355687428096000},
+		{"18!", args{18}, 6402373705728000},
+		{"19!", args{19}, 121645100408832000},
+		{"20!", args{20}, 2432902008176640000},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := fact(tt.args.n); got != tt.want {
+				t.Errorf("Fact() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestCalc(t *testing.T) {
 	type args struct {
 		rpn string
@@ -217,6 +257,7 @@ func TestCalc(t *testing.T) {
 		{"-5+1+2*3-4/2+2^3-1+2C1", args{"-5 1 + 2 3 * + 4 2 / - 2 3 ^ + 1 - 2 1 C +"}, 9},
 		{"-5+1+2*3-4/2+2^3-1+2C1-2P1", args{"-5 1 + 2 3 * + 4 2 / - 2 3 ^ + 1 - 2 1 C + 2 1 P -"}, 7},
 		{"-5+1+2*3-4/2+2^3-1+2C1-2P1+2^3", args{"-5 1 + 2 3 * + 4 2 / - 2 3 ^ + 1 - 2 1 C + 2 1 P - 2 3 ^ +"}, 15},
+		{"-5+1+2*3-4/2+2^3-1+2C1-2P1+2^3-3!", args{"-5 1 + 2 3 * + 4 2 / - 2 3 ^ + 1 - 2 1 C + 2 1 P - 2 3 ^ + 3 ! -"}, 9},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

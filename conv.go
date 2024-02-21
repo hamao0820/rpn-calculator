@@ -9,6 +9,7 @@ var precedence = map[string]int{
 	"/": 2,
 	"C": 3,
 	"P": 3,
+	"!": 3,
 	"^": 4,
 }
 
@@ -29,7 +30,7 @@ func ConvRPN(s string) string {
 	que := NewQueue[string]()
 
 	for _, token := range tokens {
-		if token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == "C" || token == "P"{
+		if token == "+" || token == "-" || token == "*" || token == "/" || token == "^" || token == "C" || token == "P" || token == "!" {
 			for !stack.IsEmpty() && precedence[stack.Top()] >= precedence[token] {
 				que.Push(stack.Top())
 				stack.Pop()

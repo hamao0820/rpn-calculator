@@ -48,6 +48,11 @@ func TestStringToTokens(t *testing.T) {
 			args: args{s: "3 P 2 + 4 ^ 2 C 4 + 6"},
 			want: []string{"3", "P", "2", "+", "4", "^", "2", "C", "4", "+", "6"},
 		},
+		{
+			name: "3 ! + 4 ^ 2 C 4 + 6",
+			args: args{s: "3 ! + 4 ^ 2 C 4 + 6"},
+			want: []string{"3", "!", "+", "4", "^", "2", "C", "4", "+", "6"},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -109,6 +114,11 @@ func TestConvRPN(t *testing.T) {
 			name: "3 P 2 + 4 ^ 2 C 4 + 6",
 			args: args{s: "3 P 2 + 4 ^ 2 C 4 + 6"},
 			want: "3 2 P 4 2 ^ 4 C + 6 +",
+		},
+		{
+			name: "3 ! + 4 ^ 2 C 4 + 6",
+			args: args{s: "3 ! + 4 ^ 2 C 4 + 6"},
+			want: "3 ! 4 2 ^ 4 C + 6 +",
 		},
 	}
 	for _, tt := range tests {

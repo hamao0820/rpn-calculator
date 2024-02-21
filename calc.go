@@ -52,6 +52,10 @@ func perm(a, b int) int {
 	return res // aPb = a! / (a-b)!
 }
 
+func fact(n int) int {
+	return perm(n, n)
+}
+
 func Calc(rpn string) int {
 	stack := NewStack[int]()
 	tokens := strings.Split(rpn, " ")
@@ -143,6 +147,14 @@ func Calc(rpn string) int {
 					panic("stack is empty")
 				}
 				stack.Push(perm(b, a)) // 順番に注意
+			}
+		case "!":
+			{
+				a := stack.Top()
+				if !stack.Pop() {
+					panic("stack is empty")
+				}
+				stack.Push(fact(a))
 			}
 		default:
 			{
