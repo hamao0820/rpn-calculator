@@ -120,6 +120,30 @@ func Calc(rpn string) int {
 				}
 				stack.Push(pow(b, a)) // 順番に注意
 			}
+		case "C":
+			{
+				a := stack.Top()
+				if !stack.Pop() {
+					panic("stack is empty")
+				}
+				b := stack.Top()
+				if !stack.Pop() {
+					panic("stack is empty")
+				}
+				stack.Push(comb(b, a)) // 順番に注意
+			}
+		case "P":
+			{
+				a := stack.Top()
+				if !stack.Pop() {
+					panic("stack is empty")
+				}
+				b := stack.Top()
+				if !stack.Pop() {
+					panic("stack is empty")
+				}
+				stack.Push(perm(b, a)) // 順番に注意
+			}
 		default:
 			{
 				i, err := strconv.Atoi(token)
