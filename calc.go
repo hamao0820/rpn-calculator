@@ -41,7 +41,15 @@ func comb(a, b int) int {
 			C[j] = C[j] + C[j-1]
 		}
 	}
-	return C[b]
+	return C[b] // aCb = a! / ((a-b)! * b!)
+}
+
+func perm(a, b int) int {
+	res := 1
+	for i := 0; i < b; i++ {
+		res *= a - i
+	}
+	return res // aPb = a! / (a-b)!
 }
 
 func Calc(rpn string) int {

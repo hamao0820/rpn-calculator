@@ -136,6 +136,66 @@ func TestComb(t *testing.T) {
 	}
 }
 
+func TestPerm(t *testing.T) {
+	type args struct {
+		a int
+		b int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "4P2",
+			args: args{a: 4, b: 2},
+			want: 12,
+		},
+		{
+			name: "4P3",
+			args: args{a: 4, b: 3},
+			want: 24,
+		},
+		{
+			name: "4P0",
+			args: args{a: 4, b: 0},
+			want: 1,
+		},
+		{
+			name: "4P4",
+			args: args{a: 4, b: 4},
+			want: 24,
+		},
+		{
+			name: "10P5",
+			args: args{a: 10, b: 5},
+			want: 30240,
+		},
+		{
+			name: "10P0",
+			args: args{a: 10, b: 0},
+			want: 1,
+		},
+		{
+			name: "10P10",
+			args: args{a: 10, b: 10},
+			want: 3628800,
+		},
+		{
+			name: "20P10",
+			args: args{a: 20, b: 10},
+			want: 670442572800,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := perm(tt.args.a, tt.args.b); got != tt.want {
+				t.Errorf("Perm() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestCalc(t *testing.T) {
 	type args struct {
 		rpn string
